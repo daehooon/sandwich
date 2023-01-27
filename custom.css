@@ -1,0 +1,134 @@
+/* 사랑해 - 대섹백 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.bg {
+    background-image: url("sandwich/bread.png");
+    background-repeat: no-repeat;
+    background-position: center -5%;
+    background-color: rgb(255, 255, 255);
+}
+
+.title {
+    color: rgb(194, 113, 81);
+    font-size: 60px;
+    font-weight: 800;
+    position: relative;
+    top: -15px;
+}
+
+.msg {
+    margin: -60px 0 20px;
+    color: rgba(226, 161, 100, 0.863);
+    font-size: 22px;
+    font-weight: 800;
+    position: relative;
+    top: 0px;
+}
+
+.row {
+    width: 360px;
+}
+
+.bucket {
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+    margin: 8px;
+    position: relative;
+
+    /* 내용 글씨관련 */
+    font-weight: 700;
+    font-size: 17px;
+    text-align: center;
+    word-break: keep-all;
+}
+
+.img1 {
+    background-image: url("sandwich/cheese1.png");
+    color: rgb(139, 92, 92);
+}
+
+.img2 {
+    background-image: url("sandwich/ham.png");
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+}
+
+.img3 {
+    background-image: url("sandwich/onion.png");
+    color: rgb(139, 92, 92);
+}
+
+.img4 {
+    background-image: url("sandwich/vege.png");
+    color: rgb(255, 255, 255);
+}
+
+.img5 {
+    background-image: url("sandwich/tomato.png");
+    color: rgb(255, 255, 255);
+}
+
+.img6 {
+    background-image: url("sandwich/cheese2.png");
+    color: rgb(139, 92, 92);
+}
+
+.img7 {
+    background-image: url("sandwich/paprica.png");
+    color: rgb(139, 92, 92);
+}
+
+.img8 {
+    background-image: url("sandwich/egg.png");
+    color: rgb(139, 92, 92);
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.done::after {
+    content: "";
+    width: 110%;
+    height: 110%;
+    background-image: url("sandwich/sauce.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -5%;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>2023 Sandwich</title>
+    <link rel='stylesheet' type='text/css' href='custom.css'>
+</head>
+
+<body class='bg center'>
+    <h1 class='title'>⭑2023⭑</h1>
+    <p class='msg'>BUCKET SANDWICH</p>
+    <div class='row flex-row wrap'>
+        <div class='bucket img1 center' id='item1'>코딩 아무거나 배워보기</div>
+        <div class='bucket img2 center' id='item2'>운동 4개월 유지</div>
+        <div class='bucket img3 center' id='item3'>영어회화 수업듣기</div>
+        <div class='bucket img4 center' id='item4'>책 5권 읽기</div>
+        <div class='bucket img5 center' id='item5'>그림 sns 계정 만들기</div>
+        <div class='bucket img6 center' id='item6'>돈스타브 용파리 잡기</div>
+        <div class='bucket img7 center' id='item7'>토스시험 응시</div>
+        <div class='bucket img8 center' id='item8'>청약통장 만들기</div>
+    </div>
+
+    <script>
+        const elementList = [];
+        elementList.push(document.getElementById('item1'));
+        elementList.push(document.getElementById('item2'));
+        elementList.push(document.getElementById('item3'));
+        elementList.push(document.getElementById('item4'));
+        elementList.push(document.getElementById('item5'));
+        elementList.push(document.getElementById('item6'));
+        elementList.push(document.getElementById('item7'));
+        elementList.push(document.getElementById('item8'));
+        
+        for (let i = 0; i < elementList.length; i++) {
+            const item = elementList[i];
+            item.onclick = dripSauceOnItem;
+
+            function dripSauceOnItem() { // parameter, argument 매개변수, 인자
+                if (item.classList.contains('done')) {
+                    item.classList.remove('done');
+                    localStorage.setItem(`item${i}`, false); // 저장 (안뿌림)
+                } else {
+                    item.classList.add('done');
+                    localStorage.setItem(`item${i}`, true); // 저장 (뿌림)
+                }
+            }
+        }
+
+        // 이 페이지가 실행될 때 로컬스토리지에서 값을 읽어와서 적용하기
+        function initSauceOnItem() {
+            for (let i = 0; i < elementList.length; i++) {
+                const item = elementList[i];
+                const value = localStorage.getItem(`item${i}`);
+                if (value === 'true') {
+                    item.classList.add('done');
+                } else {
+                    item.classList.remove('done');
+                }
+            }
+        }
+        
+        initSauceOnItem();
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023년 버킷리스트</title>
+    <link rel="stylesheet" type="text/css" href="custom.css">
+</head>
+
+<body class="bg center">
+    <h1 class="title">⭑2023⭑</h1>
+    <p class="msg">BUCKET SANDWICH</p>
+    <div class="row flex-row wrap" id="bucket-list"></div>
+
+    <!-- json 적용하기, 함수 반복문에서 빼기 -->
+    <script>
+        const items = [
+            { title: '코딩 아무거나 배워보기', image: 'img1', status: false },
+            { title: '운동 4개월 유지', image: 'img2', status: false },
+            { title: '영어회화 수업듣기', image: 'img3', status: false },
+            { title: '책 5권 읽기', image: 'img4', status: false },
+            { title: '그림 sns 계정 만들기', image: 'img5', status: false },
+            { title: '돈스타브 용파리 잡기', image: 'img6', status: false },
+            { title: '토스시험 응시', image: 'img7', status: false },
+            { title: '청약통장 만들기', image: 'img8', status: false }
+        ];
+
+        // if (localStorage.getItem('items') == null) {
+        //     localStorage.setItem('items', JSON.stringify(items));
+        // }
+        localStorage.setItem('items', JSON.stringify(items));
+
+        const bucketList = document.getElementById('bucket-list');
+        const item = JSON.parse(localStorage.getItem('items'));
+        let list = "";
+
+        for (let i = 0; i < item.length; i++) {
+            const data = item[i];
+            list += `<div class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
+        }
+
+        bucketList.innerHTML = list;
+
+        const arr = [];
+        for (let a = 0; a < items.length; a++) {
+            arr.push(document.getElementById(`item${a}`));
+        }
+
+        for (let t = 0; t < arr.length; t++) {
+            const topping = arr[t];
+            topping.onclick = dripSauceOnItem;
+
+            function dripSauceOnItem() {
+                if (topping.classList.contains('done')) {
+                    topping.classList.remove('done');
+                    // localStorage.setItem(`topping${t}`, topping.outerHTML); // 케첩 닦기
+                    let obj1 = item[t];
+                    obj1.status = "false";
+                    console.log(obj1);
+                    localStorage.setItem('items', JSON.stringify(obj1));
+                } else {
+                    topping.classList.add('done');
+                    // localStorage.setItem(`topping${t}`, topping.outerHTML); // 케첩 뿌리기
+                    let obj2 = item[t];
+                    obj2.status = "true";
+                    console.log(obj2);
+                    localStorage.setItem('items', JSON.stringify(obj2));
+                }
+            }
+
+            // if (localStorage.getItem(`topping${t}`) == null) {
+            //     localStorage.setItem(`topping${t}`, topping.outerHTML);
+            // }
+
+            // const html = document.getElementById(`topping${t + 1}`);
+            // if (localStorage.getItem(`topping${t}`).indexOf('done') == -1) {
+            //     html.classList.remove('done');
+            //     localStorage.setItem(`topping${t}`, topping.outerHTML);
+            // } else {
+            //     html.classList.add('done');
+            //     localStorage.setItem(`topping${t}`, topping.outerHTML);
+            // }
+        }
+
+        // localStorage.clear();
+    </script>
+</body>
+
+</html>

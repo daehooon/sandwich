@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023년 버킷리스트</title>
+    <link rel="stylesheet" type="text/css" href="custom.css">
+</head>
+
+<body class="bg center">
+    <h1 class="title">⭑2023⭑</h1>
+    <p class="msg">BUCKET SANDWICH</p>
+    <div class="row flex-row wrap" id="bucket-list"></div>
+
+    <!-- json 적용하기, 함수 반복문에서 빼기 -->
+    <script>
+        const items = [
+            { title: '코딩 아무거나 배워보기', image: 'img1', status: false},
+            { title: '운동 4개월 유지', image: 'img2', status: false},
+            { title: '영어회화 수업듣기', image: 'img3', status: false},
+            { title: '책 5권 읽기', image: 'img4', status: false},
+            { title: '그림 sns 계정 만들기', image: 'img5', status: false},
+            { title: '돈스타브 용파리 잡기', image: 'img6', status: false},
+            { title: '토스시험 응시', image: 'img7', status: false},
+            { title: '청약통장 만들기', image: 'img8', status: false}
+        ];
+
+        localStorage.setItem('item', JSON.stringify(items)); //stringify 안해도 될듯? 자동변환돼서
+
+        // const arr = [];
+        // arr.push(document.getElementById('item1'));
+        // arr.push(document.getElementById('item2'));
+        // arr.push(document.getElementById('item3'));
+        // arr.push(document.getElementById('item4'));
+        // arr.push(document.getElementById('item5'));
+        // arr.push(document.getElementById('item6'));
+        // arr.push(document.getElementById('item7'));
+        // arr.push(document.getElementById('item8'));
+
+        // for (let i = 0; i < arr.length; i++) {
+        //     const item = arr[i];
+        //     item.onclick = dripSauceOnItem;
+            
+        //     function dripSauceOnItem() {
+        //         if (item.classList.contains('done')) {
+        //             item.classList.remove('done');
+        //             localStorage.setItem(`item${i}`, item.outerHTML); // 케첩 닦기
+        //         } else {
+        //             item.classList.add('done');
+        //             localStorage.setItem(`item${i}`, item.outerHTML); // 케첩 뿌리기
+        //         }
+        //     }
+
+        //     if (localStorage.getItem(`item${i}`) == null) {
+        //         localStorage.setItem(`item${i}`, item.outerHTML);
+        //     }
+
+        //     const html = document.getElementById(`item${i + 1}`);
+        //     if (localStorage.getItem(`item${i}`).indexOf('done') == -1) {
+        //         html.classList.remove('done');
+        //         localStorage.setItem(`item${i}`, item.outerHTML);
+        //     } else {
+        //         html.classList.add('done');
+        //         localStorage.setItem(`item${i}`, item.outerHTML);
+        //     }
+        // }
+
+        const bucketList = document.getElementById('bucket-list');
+        const item = JSON.parse(localStorage.getItem('item'));
+        let list = ""; // == let list; 될듯?
+        for (let i = 0; i < item.length; i++) {
+            const data = item[i];
+            list += `<div class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
+        }
+        bucketList.innerHTML = list;
+    </script>
+</body>
+
+</html>

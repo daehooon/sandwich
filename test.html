@@ -1,0 +1,87 @@
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>2023 Sandwich</title>
+<link rel='stylesheet' type='text/css' href='custom.css'>
+</head>
+
+<body class='bg center'>
+    <h1 class='title'>⭑2023⭑</h1>
+    <p class='msg'>BUCKET SANDWICH</p>
+    <div class='row flex-row wrap'>
+        <div class='bucket img1 center' id='bucket1' data-id='b1'>코딩 아무거나 배워보기</div>
+        <div class='bucket img1 center done' id='bucket1d' style='display: none' data-id='b1d'>코딩 아무거나 배워보기</div>
+        <div class='bucket img2 center' id='item2'>운동 4개월 유지</div>
+        <div class='bucket img3 center' id='item3'>영어회화 수업듣기</div>
+        <div class='bucket img4 center' id='item4'>책 5권 읽기</div>
+        <div class='bucket img5 center'>그림 sns 계정 만들기</div>
+        <div class='bucket img6 center'>돈스타브 용파리 잡기</div>
+        <div class='bucket img7 center'>토스시험 응시</div>
+        <div class='bucket img8 center'>청약통장 만들기</div>
+    </div>
+
+    <script>
+        // 1. On/Off 가능하지만 코드 중복이 많음
+        document.getElementById('bucket1').onclick = function () { a() };
+        function a() {
+            document.getElementById('bucket1').style.display = 'none';
+            document.getElementById('bucket1d').style.display = 'flex';
+        }
+        document.getElementById('bucket1d').onclick = function () { b() };
+        function b() {
+            document.getElementById('bucket1d').style.display = 'none';
+            document.getElementById('bucket1').style.display = 'flex';
+        }
+
+        // 2. 소스를 뿌릴 수는 있지만, 다시 지울 수 없는 상태
+        document.getElementById('item2').onclick = dripSauceOnItem2;
+        function dripSauceOnItem2() {
+            document.getElementById('item2').classList.add('done');
+        }
+
+        // 3. On/Off 가능
+        const item3 = document.getElementById('item3');
+        item3.onclick = dripSauceOnItem3;
+        function dripSauceOnItem3() {
+            if (item3.classList.contains('done')) {
+                item3.classList.remove('done');
+            } else {
+                item3.classList.add('done');
+            }
+        }
+
+        // 4. Local Storage에 상태 저장하고 불러오기
+        const item4 = document.getElementById('item4');
+        item4.onclick = dripSauceOnItem4;
+        function dripSauceOnItem4() {
+            if (item4.classList.contains('done')) {
+                item4.classList.remove('done');
+                localStorage.setItem('item4', false); // 저장 (안뿌림)
+            } else {
+                item4.classList.add('done');
+                localStorage.setItem('item4', true); // 저장 (뿌림)
+            }
+        }
+
+        // 이 페이지가 실행될 때 로컬스토리지에서 값을 읽어와서 적용하기
+        const isItem4Dripped = localStorage.getItem('item4');
+        function initSauceOnItem4() {
+            if (isItem4Dripped == 'true') {
+                item4.classList.add('done');
+            } else {
+                item4.classList.remove('done');
+            }
+        }
+
+        initSauceOnItem4();
+
+    // if (location.reload()) {
+    //     function r();
+    // }
+    // function r() {
+    //     document.getElementById('[data-id]').style.display = 'flex';
+    //     // document.getElementById('[data-id]').style.display = 'none';
+    // }
+    </script>
+</body>
+
+</html>
