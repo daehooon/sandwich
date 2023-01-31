@@ -14,67 +14,54 @@
     <p class="msg">BUCKET SANDWICH</p>
     <div class="row flex-row wrap" id="bucket-list"></div>
 
-    <!-- json 적용하기, 함수 반복문에서 빼기 -->
+    <!-- json 적용하기(완료), 반복문에서 함수 빼기, 리팩토링 -->
     <script>
         const items = [
-            { title: '코딩 아무거나 배워보기', image: 'img1', status: false},
-            { title: '운동 4개월 유지', image: 'img2', status: false},
-            { title: '영어회화 수업듣기', image: 'img3', status: false},
-            { title: '책 5권 읽기', image: 'img4', status: false},
-            { title: '그림 sns 계정 만들기', image: 'img5', status: false},
-            { title: '돈스타브 용파리 잡기', image: 'img6', status: false},
-            { title: '토스시험 응시', image: 'img7', status: false},
-            { title: '청약통장 만들기', image: 'img8', status: false}
+            { title: '코딩 아무거나 배워보기', image: 'img1', status: false },
+            { title: '운동 4개월 유지', image: 'img2', status: false },
+            { title: '영어회화 수업듣기', image: 'img3', status: false },
+            { title: '책 5권 읽기', image: 'img4', status: false },
+            { title: '그림 sns 계정 만들기', image: 'img5', status: false },
+            { title: '돈스타브 용파리 잡기', image: 'img6', status: false },
+            { title: '토스시험 응시', image: 'img7', status: false },
+            { title: '청약통장 만들기', image: 'img8', status: false }
         ];
 
-        localStorage.setItem('item', JSON.stringify(items)); //stringify 안해도 될듯? 자동변환돼서
-
-        // const arr = [];
-        // arr.push(document.getElementById('item1'));
-        // arr.push(document.getElementById('item2'));
-        // arr.push(document.getElementById('item3'));
-        // arr.push(document.getElementById('item4'));
-        // arr.push(document.getElementById('item5'));
-        // arr.push(document.getElementById('item6'));
-        // arr.push(document.getElementById('item7'));
-        // arr.push(document.getElementById('item8'));
-
-        // for (let i = 0; i < arr.length; i++) {
-        //     const item = arr[i];
-        //     item.onclick = dripSauceOnItem;
-            
-        //     function dripSauceOnItem() {
-        //         if (item.classList.contains('done')) {
-        //             item.classList.remove('done');
-        //             localStorage.setItem(`item${i}`, item.outerHTML); // 케첩 닦기
-        //         } else {
-        //             item.classList.add('done');
-        //             localStorage.setItem(`item${i}`, item.outerHTML); // 케첩 뿌리기
-        //         }
-        //     }
-
-        //     if (localStorage.getItem(`item${i}`) == null) {
-        //         localStorage.setItem(`item${i}`, item.outerHTML);
-        //     }
-
-        //     const html = document.getElementById(`item${i + 1}`);
-        //     if (localStorage.getItem(`item${i}`).indexOf('done') == -1) {
-        //         html.classList.remove('done');
-        //         localStorage.setItem(`item${i}`, item.outerHTML);
-        //     } else {
-        //         html.classList.add('done');
-        //         localStorage.setItem(`item${i}`, item.outerHTML);
-        //     }
-        // }
+        if (localStorage.getItem('items') == null) {
+            localStorage.setItem('items', JSON.stringify(items));
+        }
 
         const bucketList = document.getElementById('bucket-list');
-        const item = JSON.parse(localStorage.getItem('item'));
-        let list = ""; // == let list; 될듯?
+        const item = JSON.parse(localStorage.getItem('items'));
+        let list = "";
+
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
             list += `<div class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
+
+        const arr = [];
+        for (let a = 0; a < item.length; a++) {
+            arr.push(document.getElementById(`item${a}`));
+        }
+
+        for (let t = 0; t < arr.length; t++) {
+            let topping = arr[t];
+            topping.onclick = dripSauceOnItem;
+
+            function dripSauceOnItem() {
+                if (topping.classList.contains('done')) {
+                    topping.classList.remove('done');
+                    item[t].status = false;
+                    localStorage.setItem('items', JSON.stringify(item));
+                } else {
+                    topping.classList.add('done');
+                    item[t].status = true;
+                    localStorage.setItem('items', JSON.stringify(item));
+                }
+            }
+        }
     </script>
 </body>
 
