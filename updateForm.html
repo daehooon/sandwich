@@ -11,10 +11,13 @@
 
 <body class="bg center">
     <h1 class="title">⭑2023⭑</h1>
-    <p class="msg">BUCKET SANDWICH</p>
+    <p class="msg">
+        BUCKET SANDWICH
+        <a href="list.html" type="button" id="cancel">취소</a>
+    </p>
     <div class="row flex-row wrap" id="bucket-list"></div>
 
-    <!-- json 적용하기(완료), 반복문에서 함수 빼기(미완), 리팩토링 -->
+    <!-- CRUD 중 C, U, D 구현하기 -->
     <script>
         const items = [
             { title: '코딩 아무거나 배워보기', image: 'img1', status: false },
@@ -46,11 +49,9 @@
             arr.push(document.getElementById(`item${a}`));
         }
 
-        for (let t = 0; t < arr.length; t++) {
-            let topping = arr[t];
-            topping.onclick = dripSauceOnItem;
-
-            function dripSauceOnItem() {
+        // 이해가 안돼요 선생님 (공부2 - stackoverflow 확인, for문에서 onclick 이슈)
+        const createClickHandler = function dripSauceOnItem(t, topping) {
+            return function dripSauceOnItem() {
                 if (topping.classList.contains('done')) {
                     topping.classList.remove('done');
                     item[t].status = false;
@@ -60,7 +61,12 @@
                     item[t].status = true;
                     localStorage.setItem('items', JSON.stringify(item));
                 }
-            }
+            };
+        }
+
+        for (let t = 0; t < arr.length; t++) {
+            let topping = arr[t];
+            topping.onclick = createClickHandler(t, topping);
         }
     </script>
 </body>
