@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2023년 버킷리스트</title>
-    <link rel="stylesheet" type="text/css" href="custom.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2023년 버킷리스트</title>
+<link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 
 <body class="bg center">
-    <h1 class="title">⭑2023⭑</h1>
-    <p class="msg">
-        BUCKET SANDWICH
-        <a href="list.html" type="button" id="cancel">취소</a>
-    </p>
-    <div class="row flex-row wrap" id="bucket-list"></div>
+	<h1 class="title">⭑2023⭑</h1>
+	<p class="msg">
+		BUCKET SANDWICH
+        <a href="list.html" type="button" id="save">저장</a>
+	</p>
+	<div class="row flex-row wrap" id="bucket-list"></div>
 
-    <!-- CRUD 중 C, U, D 구현하기 -->
-    <script>
+	<!-- CRUD 중 C, U, D 구현하기 -->
+	<script>
         const items = [
             { title: '코딩 아무거나 배워보기', image: 'img1', status: false },
             { title: '운동 4개월 유지', image: 'img2', status: false },
@@ -40,34 +40,11 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
+            list += `<div contenteditable class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
 
-        const arr = [];
-        for (let a = 0; a < item.length; a++) {
-            arr.push(document.getElementById(`item${a}`));
-        }
-
-        // 이해가 안돼요 선생님 (공부2 - stackoverflow 확인, for문에서 onclick 이슈)
-        const createClickHandler = function dripSauceOnItem(t, topping) {
-            return function dripSauceOnItem() {
-                if (topping.classList.contains('done')) {
-                    topping.classList.remove('done');
-                    item[t].status = false;
-                    localStorage.setItem('items', JSON.stringify(item));
-                } else {
-                    topping.classList.add('done');
-                    item[t].status = true;
-                    localStorage.setItem('items', JSON.stringify(item));
-                }
-            };
-        }
-
-        for (let t = 0; t < arr.length; t++) {
-            let topping = arr[t];
-            topping.onclick = createClickHandler(t, topping);
-        }
+        // document.getElementById('save').onclick = ; 바뀐 <div> localStorage.setItem()
     </script>
 </body>
 
