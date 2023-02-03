@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 
 <head>
 <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 
 <body class="bg center">
 	<h1 class="title">⭑2023⭑</h1>
-	<p class="msg">
+	<p lang="en" class="msg">
 		BUCKET SANDWICH
         <a href="updateForm.html" type="button" id="update">수정</a>
 	</p>
@@ -49,7 +49,7 @@
             arr.push(document.getElementById(`item${a}`));
         }
 
-        // 이해가 안돼요 선생님 (공부2 - stackoverflow 확인, for문에서 onclick 이슈)
+        // 이해가 안돼요 선생님 (for문에서 onclick 이슈 - https://dreator.com/bbs/board.php?bo_table=web&wr_id=7)
         const createClickHandler = function dripSauceOnItem(t, topping) {
             return function dripSauceOnItem() {
                 if (topping.classList.contains('done')) {

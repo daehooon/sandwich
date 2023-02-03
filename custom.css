@@ -12,6 +12,7 @@ html {
     justify-content: center;
 }
 
+/* 드래그 방지 */
 body {
     -webkit-user-select: none;
     -moz-user-select: none;
