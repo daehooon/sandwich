@@ -2,23 +2,23 @@
 <html lang="ko">
 
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2023년 버킷리스트</title>
-<link rel="stylesheet" type="text/css" href="custom.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023년 버킷리스트</title>
+    <link rel="stylesheet" type="text/css" href="custom.css">
 </head>
 
 <body class="bg center">
-	<h1 class="title">⭑2023⭑</h1>
-	<p class="msg">
-		BUCKET SANDWICH
+    <h1 class="title">⭑2023⭑</h1>
+    <p class="msg">
+        BUCKET SANDWICH
         <a href="list.html" type="button" id="save">저장</a>
-	</p>
-	<div class="row flex-row wrap" id="bucket-list"></div>
+    </p>
+    <div class="row flex-row wrap" id="bucket-list"></div>
 
-	<!-- CRUD 중 C, U, D 구현하기 -->
-	<script>
+    <!-- CRUD 중 C, U, D 구현하기 -->
+    <script>
         const items = [
             { title: '코딩 아무거나 배워보기', image: 'img1', status: false },
             { title: '운동 4개월 유지', image: 'img2', status: false },
@@ -44,7 +44,17 @@
         }
         bucketList.innerHTML = list;
 
-        // document.getElementById('save').onclick = ; 바뀐 <div> localStorage.setItem()
+        const saveHandler = function save() {
+            return function save() {
+                const list2 = [];
+                for (let b = 0; b < item.length; b++) {
+                    const bucketList2 = document.getElementById(`item${b}`);
+                    list2.push({ title: `${bucketList2.innerText}`, image: `${bucketList2.classList[1]}`, status: JSON.parse(`${bucketList2.classList[3] ? true : false}`) },);
+                }
+                localStorage.setItem('items', JSON.stringify(list2));
+            };
+        }
+        document.getElementById('save').onclick = saveHandler();
     </script>
 </body>
 
