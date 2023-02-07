@@ -40,7 +40,8 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
+            list += `<button id='delete${i}'>X</button>
+            <div contenteditable class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
 
@@ -55,6 +56,10 @@
             };
         }
         document.getElementById('save').onclick = saveHandler();
+
+        for (let d = 0; d < item.length; d++) {
+            // document.getElementById(`delete${d}`).onclick = 해당 div 삭제;
+        }
     </script>
 </body>
 
