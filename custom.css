@@ -17,13 +17,13 @@ body {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
 }
 
 .bg {
     background-image: url("sandwich/bread2.png");
     background-repeat: no-repeat;
-    background-position: center -5%;
+    background-position: center -270%;
     background-color: rgb(255, 255, 255);
 }
 
@@ -32,7 +32,7 @@ body {
     font-size: 60px;
     font-weight: 800;
     position: relative;
-    top: -15px;
+    top: 15px;
 }
 
 .msg {
@@ -41,7 +41,7 @@ body {
     font-size: 22px;
     font-weight: 800;
     position: relative;
-    top: 0px;
+    top: 39px;
 }
 
 .row {
@@ -53,8 +53,9 @@ body {
     height: 120px;
     background-size: cover;
     background-position: center;
-    margin: 10px;
+    margin: 7px;
     position: relative;
+    top: 33px;
 
     /* 내용 글씨관련 */
     font-weight: 700;
@@ -102,6 +103,23 @@ body {
 .img8 {
     background-image: url("sandwich/egg.png");
     color: rgb(139, 92, 92);
+}
+
+.img9 {
+    background-image: url("sandwich/button_plus.png");
+}
+
+.img10 {
+    background-image: url("sandwich/button_x.png");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border: none;
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .center {

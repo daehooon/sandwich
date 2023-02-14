@@ -27,9 +27,12 @@
             { title: '그림 sns 계정 만들기', image: 'img5', status: false },
             { title: '돈스타브 용파리 잡기', image: 'img6', status: false },
             { title: '토스시험 응시', image: 'img7', status: false },
-            { title: '청약통장 만들기', image: 'img8', status: false }
+            { title: '청약통장 만들기', image: 'img8', status: false },
+            { title: '바디프로필 찍기', image: 'img3', status: false},
+            { title: '아무거나 하기', image: 'img5', status: false}
         ];
 
+        // localStorage.setItem('items', JSON.stringify(items));
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
         }
