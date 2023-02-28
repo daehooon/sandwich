@@ -32,7 +32,8 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        localStorage.setItem('items', JSON.stringify(items));
+        // localStorage.setItem('items', JSON.stringify(items));
+
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
         }
@@ -60,31 +61,30 @@
         document.getElementById('save').onclick = saveHandler();
 
 
-        
+
         // + 이미지 추가 -> list 페이지에선 안보이게
         // 로컬스토리지에 저장
         // X 버튼 지워짐 (backspace)
         // 글자 수 제한 및 칸에 맞게 자동 정렬
         //
         const arr2 = [];
+        const arr3 = [];
         for (let b = 0; b < item.length; b++) {
             arr2.push(document.getElementById(`delete${b}`));
+            arr3.push(document.getElementById(`item${b}`));
         }
 
-        let list2 = "";
-        const deleteHandler = function deleteDiv(d) {
+        const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
-                // document.getElementById(`item${d}`).remove();
-                for (let d = 0; d < item.length; d++) {
-                    list2 += `<div class='bucket img9 center ' id='item${d}'></div>`;
-                }
-                bucketList.innerHTML = list2;
+                // <div contenteditable class='bucket img1 center done' id='item1><button class='img10' id='delete1'></button>운동 4개월 유지</div>
+                topping2.classList.replace('img' + (d - 1), 'img9');
             };
         }
 
         for (let d = 0; d < arr2.length; d++) {
             let deleteBtn = arr2[d];
-            deleteBtn.onclick = deleteHandler(d);
+            let topping2 = arr3[d];
+            deleteBtn.onclick = deleteHandler(d, topping2);
         }
     </script>
 </body>
