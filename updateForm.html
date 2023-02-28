@@ -32,7 +32,7 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        // localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
@@ -44,9 +44,10 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'><button class='img10' id='delete${i}'></button>${data.title}</div>`;
+            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'><button class='img10' id='delete${i}' readonly></button>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
+        
 
         const saveHandler = function save() {
             return function save() {
@@ -61,8 +62,6 @@
         document.getElementById('save').onclick = saveHandler();
 
 
-
-        // + 이미지 추가 -> list 페이지에선 안보이게
         // 로컬스토리지에 저장
         // X 버튼 지워짐 (backspace)
         // 글자 수 제한 및 칸에 맞게 자동 정렬
@@ -74,10 +73,16 @@
             arr3.push(document.getElementById(`item${b}`));
         }
 
+        function removeClassByPrefix(node, prefix) {
+            const regx = new RegExp('\\b' + prefix + '[^ ]*[ ]?\\b', 'g');
+            node.className = node.className.replace(regx, '');
+            return node;
+        }
+
         const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
-                // <div contenteditable class='bucket img1 center done' id='item1><button class='img10' id='delete1'></button>운동 4개월 유지</div>
-                topping2.classList.replace('img' + (d - 1), 'img9');
+                removeClassByPrefix(topping2, 'img');
+                topping2.classList.add('img9');
             };
         }
 
