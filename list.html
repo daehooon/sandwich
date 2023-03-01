@@ -33,6 +33,7 @@
         ];
 
         // localStorage.setItem('items', JSON.stringify(items));
+
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
         }
@@ -63,7 +64,6 @@
                     item[t].status = true;
                     localStorage.setItem('items', JSON.stringify(item));
                 }
-                console.log(t);
             };
         }
 

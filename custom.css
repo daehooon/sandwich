@@ -62,6 +62,7 @@ body {
     font-size: 16px;
     text-align: center;
     word-break: keep-all;
+    max-width: 19.5;
 }
 
 .img1 {
@@ -150,4 +151,5 @@ body {
     background-position: center;
     position: absolute;
     top: -5%;
+    /* 투명도 반토막 opacity:0.5!important; */
 }
