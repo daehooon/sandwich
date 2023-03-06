@@ -77,17 +77,15 @@
             return node;
         }
 
-        const deleteHandler = function deleteDiv(d, topping2, deleteBtn) {
+        const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
                 removeClassByPrefix(topping2, 'img');
                 topping2.classList.add('img9');
-                // document.getElementById(`delete1${d}`).remove();
+                document.getElementById(`delete${d}`).remove();
                 document.getElementById(`item${d}`).innerText = '';
                 document.getElementById(`item${d}`).contentEditable = false;
                 item[d].image = 'img9';
                 item[d].title = '';
-                // deleteBtn.classList = 'n';
-                // deleteBtn.setItem = hidden;
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
@@ -95,7 +93,7 @@
         for (let d = 0; d < arr2.length; d++) {
             let deleteBtn = arr2[d];
             let topping2 = arr3[d];
-            deleteBtn.onclick = deleteHandler(d, topping2, deleteBtn);
+            deleteBtn.onclick = deleteHandler(d, topping2);
         }
 
         const saveHandler2 = function savediv() {
