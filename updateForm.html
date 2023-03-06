@@ -44,7 +44,7 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done' : ''}' id='item${i}'><button contenteditable='false' class='img10' id='delete${i}' readonly></button>${data.title}</div>`;
+            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'><button contenteditable='false' class='img10' id='delete${i}' readonly></button>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
 
@@ -77,21 +77,33 @@
             return node;
         }
 
-        const deleteHandler = function deleteDiv(d, topping2) {
+        const deleteHandler = function deleteDiv(d, topping2, deleteBtn) {
             return function deleteDiv() {
                 removeClassByPrefix(topping2, 'img');
                 topping2.classList.add('img9');
-                document.getElementById(`delete${d}`).remove();
+                // document.getElementById(`delete1${d}`).remove();
                 document.getElementById(`item${d}`).innerText = '';
                 document.getElementById(`item${d}`).contentEditable = false;
+                item[d].image = 'img9';
+                item[d].title = '';
+                // deleteBtn.classList = 'n';
+                // deleteBtn.setItem = hidden;
+                localStorage.setItem('items', JSON.stringify(item));
             };
         }
 
         for (let d = 0; d < arr2.length; d++) {
             let deleteBtn = arr2[d];
             let topping2 = arr3[d];
-            deleteBtn.onclick = deleteHandler(d, topping2);
+            deleteBtn.onclick = deleteHandler(d, topping2, deleteBtn);
         }
+
+        const saveHandler2 = function savediv() {
+            return function saveDiv() {
+                localStorage.setItem('items', JSON.stringify(item));
+            };
+        }
+        document.getElementById('save').onclick = saveHandler2();
     </script>
 </body>
 

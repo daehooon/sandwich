@@ -123,6 +123,10 @@ body {
     left: 0px;
 }
 
+.n {
+    background-image: url("sandwich/n.png");
+}
+
 .center {
     display: flex;
     flex-direction: column;
@@ -151,5 +155,17 @@ body {
     background-position: center;
     position: absolute;
     top: -5%;
-    /* 투명도 반토막 opacity:0.5!important; */
+}
+
+.done2::after {
+    content: "";
+    width: 110%;
+    height: 110%;
+    background-image: url("sandwich/sauce.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -5%;
+    opacity:0.5!important;
 }
