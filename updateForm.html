@@ -44,7 +44,7 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'><button contenteditable='false' class='img10' id='delete${i}' readonly></button>${data.title}</div>`;
+            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'><button contenteditable='false' class='img10' id='delete1${i}' readonly></button>${data.title}</div>`;
         }
         bucketList.innerHTML = list;
 
@@ -67,7 +67,7 @@
         const arr2 = [];
         const arr3 = [];
         for (let b = 0; b < item.length; b++) {
-            arr2.push(document.getElementById(`delete${b}`));
+            arr2.push(document.getElementById(`delete1${b}`));
             arr3.push(document.getElementById(`item${b}`));
         }
 
@@ -81,11 +81,13 @@
             return function deleteDiv() {
                 removeClassByPrefix(topping2, 'img');
                 topping2.classList.add('img9');
-                document.getElementById(`delete${d}`).remove();
+                document.getElementById(`delete1${d}`).remove();
                 document.getElementById(`item${d}`).innerText = '';
                 document.getElementById(`item${d}`).contentEditable = false;
                 item[d].image = 'img9';
                 item[d].title = '';
+                // deleteBtn.classList = 'n';
+                // deleteBtn.setItem = hidden;
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
