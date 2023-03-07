@@ -32,7 +32,7 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        // localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
@@ -44,7 +44,9 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'><button contenteditable='false' class='img10' id='delete1${i}' readonly></button>${data.title}</div>`;
+            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'>
+                <div contenteditable='false'><button class='img10' id='delete1${i}' ${data.image != 'img9' ? 'readonly' : 'hidden'}></button></div>
+                ${data.title}</div>`;
         }
         bucketList.innerHTML = list;
 
@@ -60,8 +62,6 @@
         }
         document.getElementById('save').onclick = saveHandler();
 
-        // 토핑 없어진 부분 +버튼이 안생김, x버튼 생김
-        // X 버튼 지워짐 (backspace)
         // 글자 수 제한 및 칸에 맞게 자동 정렬
         //
         const arr2 = [];
@@ -86,8 +86,6 @@
                 document.getElementById(`item${d}`).contentEditable = false;
                 item[d].image = 'img9';
                 item[d].title = '';
-                // deleteBtn.classList = 'n';
-                // deleteBtn.setItem = hidden;
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
