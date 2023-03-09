@@ -56,6 +56,7 @@ body {
     margin: 7px;
     position: relative;
     top: 33px;
+    z-index: 2;
 
     /* 내용 글씨관련 */
     font-weight: 700;
@@ -124,6 +125,12 @@ body {
     left: 0px;
 }
 
+.plus-dark {
+    background-image: url("sandwich/button_plus_dark.png");
+    background-repeat: no-repeat;
+    background-size: 40%;
+}
+
 .n {
     background-image: url("sandwich/n.png");
 }
@@ -173,25 +180,28 @@ body {
 
 .tray {
     background-image: url("sandwich/tray1.png");
-    background-size: 300px;
-    background-position: 50%;
+    background-size: 340px;
+    background-position: 152px 214px;
+    background-repeat: no-repeat;
+    padding: 13%;
+    z-index: 1;
 
     position: absolute;
-    left: 23%;
-    top: 35%;
+    left: 13%;
+    top: 5%;
     width: 150px;
-    height: 300px;
+    height: 200px;
 
     flex-wrap: wrap;
+    /* flex-direction: row; */
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
 .tray-on-img {
     background-size: cover;
-    margin: 3px;
+    margin: 6px;
     width: 55px;
     height: 55px;
 }

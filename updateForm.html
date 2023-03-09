@@ -17,14 +17,14 @@
     </p>
     <div class="row flex-row wrap" id="bucket-list"></div>
     <div class="tray" id="tray">
-        <div class="tray-img1 tray-on-img" type="button" id="tray-img1"></div>
-        <div class="tray-img2 tray-on-img" type="button" id="tray-img2"></div>
-        <div class="tray-img3 tray-on-img" type="button" id="tray-img3"></div>
-        <div class="tray-img4 tray-on-img" type="button" id="tray-img4"></div>
-        <div class="tray-img5 tray-on-img" type="button" id="tray-img5"></div>
-        <div class="tray-img6 tray-on-img" type="button" id="tray-img6"></div>
-        <div class="tray-img7 tray-on-img" type="button" id="tray-img7"></div>
-        <div class="tray-img8 tray-on-img" type="button" id="tray-img8"></div>
+        <div class="tray-img1 tray-on-img" type="button" id="tray-img0"></div>
+        <div class="tray-img2 tray-on-img" type="button" id="tray-img1"></div>
+        <div class="tray-img3 tray-on-img" type="button" id="tray-img2"></div>
+        <div class="tray-img4 tray-on-img" type="button" id="tray-img3"></div>
+        <div class="tray-img5 tray-on-img" type="button" id="tray-img4"></div>
+        <div class="tray-img6 tray-on-img" type="button" id="tray-img5"></div>
+        <div class="tray-img7 tray-on-img" type="button" id="tray-img6"></div>
+        <div class="tray-img8 tray-on-img" type="button" id="tray-img7"></div>
     </div>
 
     <!-- CRUD 중 C, U 구현하기 -->
@@ -42,7 +42,7 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        localStorage.setItem('items', JSON.stringify(items));
+        // localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
@@ -81,12 +81,28 @@
             arr3.push(document.getElementById(`item${b}`));
         }
 
+        // tray
+        const trayHandler = function trayDiv(t) {
+            return function trayDiv() {
+
+            };
+        }
+
+        const ingredient = 8;
+        const trayArray = [];
+        for (let t = 0; t < ingredient; t++) {
+            trayArray.push(document.getElementById(`tray-img${t}`));
+            let tray = trayArray[t];
+            tray.onclick = trayHandler(t);
+        }
+
         function removeClassByPrefix(node, prefix) {
             const regx = new RegExp('\\b' + prefix + '[^ ]*[ ]?\\b', 'g');
             node.className = node.className.replace(regx, '');
             return node;
         }
-
+        
+        
         const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
                 removeClassByPrefix(topping2, 'img');
@@ -99,25 +115,35 @@
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
+        
+        // plus-dark
+        function dark(dark) {
+            return dark = 'plus-dark';
+        }
 
+        const plusDarkHandler = function plusDark(d) {
+            return function plusDark() {
+                console.log(item[d].classList);
+                item[d].classList.replace('img10', 'plus-dark');
+                localStorage.setItem('items', JSON.stringify(item));
+            };
+        }
+        
         for (let d = 0; d < arr2.length; d++) {
             let deleteBtn = arr2[d];
             let topping2 = arr3[d];
             deleteBtn.onclick = deleteHandler(d, topping2);
+            if (arr2.some(dark)) {
+                item[d].onclick = plusDarkHandler(d);
+            }
         }
-
+        
         const saveHandler2 = function saveDiv() {
             return function saveDiv() {
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
         document.getElementById('save').onclick = saveHandler2();
-
-        const selectHandler = function selectDiv() {
-            return function selectDiv() {
-
-            }
-        }
     </script>
 </body>
 
