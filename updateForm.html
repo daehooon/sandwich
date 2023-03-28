@@ -42,7 +42,7 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        // localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
@@ -101,10 +101,15 @@
             node.className = node.className.replace(regx, '');
             return node;
         }
-        
-        
+
+
         const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
+                // if (!confirm('먹어치우시겠습니까?')) {
+                //     // 취소(아니오) 버튼 클릭 시 이벤트
+                // } else {
+                //     // 확인(예) 버튼 클릭 시 이벤트
+                // }
                 removeClassByPrefix(topping2, 'img');
                 topping2.classList.add('img9');
                 document.getElementById(`delete1${d}`).remove();
@@ -115,29 +120,22 @@
                 localStorage.setItem('items', JSON.stringify(item));
             };
         }
-        
-        // plus-dark
-        function dark(dark) {
-            return dark = 'plus-dark';
-        }
 
-        const plusDarkHandler = function plusDark(d) {
+        // plus-dark
+        const plusDarkHandler = function plusDark(d, topping2) {
             return function plusDark() {
-                console.log(item[d].classList);
-                item[d].classList.replace('img10', 'plus-dark');
-                localStorage.setItem('items', JSON.stringify(item));
+                if (removeClassByPrefix(topping2, 'img9').onclick) {
+                    // topping2.classList.add('plus-dark');
+                }
             };
         }
-        
+
         for (let d = 0; d < arr2.length; d++) {
             let deleteBtn = arr2[d];
             let topping2 = arr3[d];
             deleteBtn.onclick = deleteHandler(d, topping2);
-            if (arr2.some(dark)) {
-                item[d].onclick = plusDarkHandler(d);
-            }
         }
-        
+
         const saveHandler2 = function saveDiv() {
             return function saveDiv() {
                 localStorage.setItem('items', JSON.stringify(item));
