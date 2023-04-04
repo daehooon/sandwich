@@ -32,7 +32,7 @@
             { title: '아무거나 하기', image: 'img5', status: false}
         ];
 
-        // localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));

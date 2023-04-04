@@ -106,7 +106,7 @@ body {
     color: rgb(139, 92, 92);
 }
 
-.img9 {
+.plusBtn {
     background-image: url("sandwich/button_plus.png");
     background-repeat: no-repeat;
     background-size: 40%;
@@ -187,7 +187,7 @@ body {
     z-index: 1;
 
     position: absolute;
-    left: 13%;
+    left: 0%;
     top: 5%;
     width: 150px;
     height: 200px;
@@ -201,6 +201,9 @@ body {
 
 .tray-on-img {
     background-size: cover;
+    position: relative;
+    left: 47%;
+    top: 36%;
     margin: 6px;
     width: 55px;
     height: 55px;

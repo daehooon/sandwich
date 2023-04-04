@@ -42,7 +42,7 @@
             { title: '아무거나 하기', image: 'img5', status: false }
         ];
 
-        localStorage.setItem('items', JSON.stringify(items));
+        // localStorage.setItem('items', JSON.stringify(items));
 
         if (localStorage.getItem('items') == null) {
             localStorage.setItem('items', JSON.stringify(items));
@@ -55,7 +55,7 @@
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
             list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'>
-                <div contenteditable='false'><button class='img10' id='delete1${i}' ${data.image != 'img9' ? 'readonly' : 'hidden'}></button></div>
+                <div contenteditable='false'><button class='img10' id='delete1${i}' ${data.image != 'plusBtn' ? 'readonly' : 'hidden'}></button></div>
                 ${data.title}</div>`;
         }
         bucketList.innerHTML = list;
@@ -76,10 +76,18 @@
         //
         const arr2 = [];
         const arr3 = [];
+
+        const plusArr = [];
+
         for (let b = 0; b < item.length; b++) {
             arr2.push(document.getElementById(`delete1${b}`));
             arr3.push(document.getElementById(`item${b}`));
+
+            if (document.getElementById(`item${b}`).className.toString() == 'bucket plusBtn center ') {
+                // /bucket plusBtn center /g 정규표현식
+            }
         }
+        // plusArr.push(arr3.classList.contains('bucket plusBtn center '));
 
         // tray
         const trayHandler = function trayDiv(t) {
@@ -111,11 +119,11 @@
                 //     // 확인(예) 버튼 클릭 시 이벤트
                 // }
                 removeClassByPrefix(topping2, 'img');
-                topping2.classList.add('img9');
+                topping2.classList.add('plusBtn');
                 document.getElementById(`delete1${d}`).remove();
                 document.getElementById(`item${d}`).innerText = '';
                 document.getElementById(`item${d}`).contentEditable = false;
-                item[d].image = 'img9';
+                item[d].image = 'plusBtn';
                 item[d].title = '';
                 localStorage.setItem('items', JSON.stringify(item));
             };
@@ -124,8 +132,11 @@
         // plus-dark
         const plusDarkHandler = function plusDark(d, topping2) {
             return function plusDark() {
-                if (removeClassByPrefix(topping2, 'img9').onclick) {
+                console.log("성공1");
+                removeClassByPrefix(topping2, 'plusBtn');
+                if (removeClassByPrefix(topping2, 'plusBtn').onclick) {
                     // topping2.classList.add('plus-dark');
+                    console.log("성공");
                 }
             };
         }
