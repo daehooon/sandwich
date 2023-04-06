@@ -76,18 +76,14 @@
         //
         const arr2 = [];
         const arr3 = [];
-
         const plusArr = [];
 
         for (let b = 0; b < item.length; b++) {
             arr2.push(document.getElementById(`delete1${b}`));
             arr3.push(document.getElementById(`item${b}`));
-
-            if (document.getElementById(`item${b}`).className.toString() == 'bucket plusBtn center ') {
-                // /bucket plusBtn center /g 정규표현식
-            }
+            plusArr.push(document.getElementsByClassName('bucket plusBtn center ')[b].id);
+            console.log(plusArr);
         }
-        // plusArr.push(arr3.classList.contains('bucket plusBtn center '));
 
         // tray
         const trayHandler = function trayDiv(t) {
