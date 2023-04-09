@@ -76,13 +76,9 @@
         //
         const arr2 = [];
         const arr3 = [];
-        const plusArr = [];
-
         for (let b = 0; b < item.length; b++) {
             arr2.push(document.getElementById(`delete1${b}`));
             arr3.push(document.getElementById(`item${b}`));
-            plusArr.push(document.getElementsByClassName('bucket plusBtn center ')[b].id);
-            console.log(plusArr);
         }
 
         // tray
@@ -126,6 +122,14 @@
         }
 
         // plus-dark
+        function getPlusId() {
+            const plusCl = document.getElementsByClassName('bucket plusBtn center ');
+            const plusArr = [].slice.call(plusCl);
+            for (let p = 0; p < plusCl.length; p++) {
+                return plusArr[p].id;
+            }
+        }
+
         const plusDarkHandler = function plusDark(d, topping2) {
             return function plusDark() {
                 console.log("성공1");
@@ -141,6 +145,8 @@
             let deleteBtn = arr2[d];
             let topping2 = arr3[d];
             deleteBtn.onclick = deleteHandler(d, topping2);
+
+            de
         }
 
         const saveHandler2 = function saveDiv() {
