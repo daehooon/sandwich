@@ -122,12 +122,19 @@
         }
 
         // plus-dark
+        const plusCl = document.getElementsByClassName('bucket plusBtn center ');
         function getPlusId() {
-            const plusCl = document.getElementsByClassName('bucket plusBtn center ');
             const plusArr = [].slice.call(plusCl);
             for (let p = 0; p < plusCl.length; p++) {
-                return plusArr[p].id;
+                return plusArr.id;
             }
+        }
+
+        const plusArr = [];
+        
+        for (let p = 0; p < plusCl.length; p++) {
+            console.log(plusArr);
+            plusArr.push(getPlusId());
         }
 
         const plusDarkHandler = function plusDark(d, topping2) {
