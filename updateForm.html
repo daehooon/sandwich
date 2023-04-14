@@ -118,6 +118,7 @@
                 item[d].image = 'plusBtn';
                 item[d].title = '';
                 localStorage.setItem('items', JSON.stringify(item));
+                location.reload();
             };
         }
 
@@ -125,18 +126,20 @@
         const plusCl = document.getElementsByClassName('bucket plusBtn center ');
         function getPlusId() {
             const plusArr = [].slice.call(plusCl);
+            let pl = []
             for (let p = 0; p < plusCl.length; p++) {
-                return plusArr.id;
+                pl.push(plusArr[p].id);
             }
+            return pl.join();
         }
+        console.log(getPlusId());
 
-        const plusArr = [];
+        const plusArray = [];
         
         for (let p = 0; p < plusCl.length; p++) {
-            console.log(plusArr);
-            plusArr.push(getPlusId());
+            plusArray.push(getPlusId());
         }
-
+        
         const plusDarkHandler = function plusDark(d, topping2) {
             return function plusDark() {
                 console.log("성공1");
