@@ -54,7 +54,7 @@
 
         for (let i = 0; i < item.length; i++) {
             const data = item[i];
-            list += `<div contenteditable='true' class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'>
+            list += `<div contenteditable=${data.image == 'plusBtn' ? 'false' : 'true'} class='bucket ${data.image} center ${data.status ? 'done2' : ''}' id='item${i}'>
                 <div contenteditable='false'><button class='img10' id='delete1${i}' ${data.image != 'plusBtn' ? 'readonly' : 'hidden'}></button></div>
                 ${data.title}</div>`;
         }
@@ -102,6 +102,35 @@
             return node;
         }
 
+        // plus-dark
+        const plusCl = document.getElementsByClassName('bucket plusBtn center ');
+        function getPlusId() {
+            const plusArr = [].slice.call(plusCl);
+            let pl = []
+            for (let p = 0; p < plusCl.length; p++) {
+                pl.push(plusArr[p].id);
+            }
+            return pl;
+        }
+
+        const plusIds = getPlusId();
+        for (let p = 0; p < plusIds.length; p++) {
+            let plusBtn = plusIds[p];
+            let plusBtnArr = document.getElementById(plusBtn);
+            plusBtnArr.onclick = plusDark(plusBtnArr);
+        }
+
+        function plusDark(plusBtnArr) {
+            return function plusDark() {
+                if (plusBtnArr.classList.contains('plusBtn')) {
+                    removeClassByPrefix(plusBtnArr, 'plusBtn');
+                    plusBtnArr.classList.add('plus-dark');
+                } else if (plusBtnArr.classList.contains('plus-dark')) {
+                    removeClassByPrefix(plusBtnArr, 'plus-dark');
+                    plusBtnArr.classList.add('plusBtn');
+                }
+            };
+        }
 
         const deleteHandler = function deleteDiv(d, topping2) {
             return function deleteDiv() {
@@ -119,35 +148,6 @@
                 item[d].title = '';
                 localStorage.setItem('items', JSON.stringify(item));
                 location.reload();
-            };
-        }
-
-        // plus-dark
-        const plusCl = document.getElementsByClassName('bucket plusBtn center ');
-        function getPlusId() {
-            const plusArr = [].slice.call(plusCl);
-            let pl = []
-            for (let p = 0; p < plusCl.length; p++) {
-                pl.push(plusArr[p].id);
-            }
-            return pl.join();
-        }
-        console.log(getPlusId());
-
-        const plusArray = [];
-        
-        for (let p = 0; p < plusCl.length; p++) {
-            plusArray.push(getPlusId());
-        }
-        
-        const plusDarkHandler = function plusDark(d, topping2) {
-            return function plusDark() {
-                console.log("성공1");
-                removeClassByPrefix(topping2, 'plusBtn');
-                if (removeClassByPrefix(topping2, 'plusBtn').onclick) {
-                    // topping2.classList.add('plus-dark');
-                    console.log("성공");
-                }
             };
         }
 
